@@ -97,7 +97,7 @@ public class Main {
 		
 		int encounter = (int)(Math.random() * 24);
 		if(encounter > 22) {
-			eventHandler(3);
+			System.out.println(eventHandler(3));
 		}
 		
 		int compass = (int)(Math.random() * 20);
@@ -106,8 +106,8 @@ public class Main {
 		}
 
 
-		if(calculateDistance() == "Distance to your Brother: 0m") {
-			eventHandler(1);
+		if(calculateDistanceInt() == 0) {
+			System.out.println(eventHandler(1));
 			gameRunning = false;
 		}		
 		
@@ -146,6 +146,32 @@ public class Main {
 		}
 		
 		return "Distance to your Brother: " + (calcX + calcY) + "m";
+	}
+	
+	public static int calculateDistanceInt() {
+
+		int calcX;
+		int calcY;
+
+		if(playerPosX == treasurePosX) {
+			calcX = 0;
+		}
+		if(playerPosY == treasurePosY) {
+			calcY = 0;
+		}
+		
+		if(playerPosX > treasurePosX) {
+			calcX = playerPosX - treasurePosX;
+		} else {
+			calcX = treasurePosX - playerPosX;
+		}
+		if(playerPosY > treasurePosY) {
+			calcY = playerPosY - treasurePosY;
+		} else {
+			calcY = treasurePosY - playerPosY;
+		}
+		
+		return calcX + calcY;
 	}
 	
 	public static void initPlayer() {
